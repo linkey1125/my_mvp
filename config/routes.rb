@@ -1,14 +1,21 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  root 'posts#index' # 投稿一覧をトップページに設定
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", as: :rails_health_check
+  resources :posts, only: [:index, :new, :create]
 
-  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
-  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
+  resources :users, only: [:new, :create, :show, :edit, :update]
+  get 'signup', to: 'users#new', as: 'signup'
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+  resources :sessions, only: [:new, :create, :destroy]
+  get 'login', to: 'sessions#new', as: 'login'
+  post 'login', to: 'sessions#create'
+  delete 'logout', to: 'sessions#destroy', as: 'logout'
+
+  resources :passwords, only: [:new, :create, :edit, :update]
+
+  resources :favorites, only: [:create, :destroy]
+  resources :items, only: [:index, :show]
+  post 'items/:id/toggle_favorite', to: 'items#toggle_favorite', as: 'toggle_favorite'
+
+  get 'mypage', to: 'users#show'
 end

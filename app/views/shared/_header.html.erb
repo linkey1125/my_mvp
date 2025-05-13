@@ -1,0 +1,13 @@
+<header class="flex justify-between items-center p-5 bg-white shadow-md">
+    <%# ロゴ画像をクリックするとトップページに遷移する %>
+    <%= link_to root_path do %>
+        <%= image_tag "logo_icon.png", alt: "UVtech.と ロゴ", class: "w-24 h-auto" %>
+    <% end %>
+
+    <div class="flex space-x-4">
+        <%= image_tag "heart_icon.png", alt: "お気に入り", class: "w-6 h-6 hover:opacity-75" %>
+        <a href="<%= login_path %>">
+            <%= image_tag "user_icon.png", alt: "マイページ", class: "w-6 h-6 hover:opacity-75" %>
+        </a>
+    </div>
+</header>

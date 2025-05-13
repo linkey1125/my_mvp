@@ -22,7 +22,23 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
-  <body>
+  <body class="font-sans bg-gray-100">
+
+    <%# ======= 共通のヘッダーを呼び出し ======= %>
+    <%= render "shared/header" %>
+
+    <%# フラッシュメッセージの表示 %>
+    <% if flash[:alert].present? %>
+        <div class="bg-red-500 text-white text-center p-3 rounded mb-4">
+            <%= flash[:alert] %>
+        </div>
+    <% end %>
+
+    <% if flash[:notice].present? %>
+        <div class="bg-green-500 text-white text-center p-3 rounded mb-4">
+            <%= flash[:notice] %>
+        </div>
+    <% end %>
     <%= yield %>
   </body>
 </html>
