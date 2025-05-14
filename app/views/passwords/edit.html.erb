@@ -1,0 +1,6 @@
+<h2>新しいパスワードを入力</h2>
+<%= form_with model: @user, url: password_path(@user.reset_token), method: :patch, local: true do |f| %>
+  <%= f.password_field :password, placeholder: "新しいパスワード" %>
+  <%= f.password_field :password_confirmation, placeholder: "確認用パスワード" %>
+  <%= f.submit "パスワードを変更" %>
+<% end %>

@@ -1,0 +1,20 @@
+<div class="flex flex-col items-center justify-center min-h-screen bg-white">
+    <h2 class="text-2xl font-bold text-center mb-6 text-black">パスワードリセット</h2>
+
+    <%# パスワードリセットフォーム %>
+    <%= form_with url: passwords_path, method: :post, local: true, class: "w-96 space-y-6" do |f| %>
+        <%# メールアドレス入力欄 %>
+        <%= f.email_field :email, placeholder: "メールアドレス", 
+            class: "w-full border border-gray-300 rounded-full p-3 bg-white text-black placeholder-gray-400 focus:ring focus:ring-gray-400", required: true %>
+
+        <%# 送信ボタン (ピンク系) %>
+        <%= f.submit "リセットリンクを送信", 
+            class: "w-full bg-[#c8a07e] text-white p-3 rounded-full hover:bg-[#b38f70]" %>
+    <% end %>
+
+    <%# ログインページへのリンク %>
+    <a href="<%= login_path %>" 
+        class="w-96 mt-6 bg-[#9c3b3b] text-white p-3 rounded-full hover:bg-[#872f2f] flex items-center justify-center">
+        ログインページへ戻る
+    </a>
+</div>

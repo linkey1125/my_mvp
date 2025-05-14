@@ -1,0 +1,29 @@
+<div class="flex flex-col items-center justify-center min-h-screen bg-white">
+    <h2 class="text-2xl font-bold text-center mb-6 text-black">ログイン</h2>
+
+    <%# ログインフォーム %>
+    <%= form_with url: sessions_path, method: :post, local: true, class: "w-96 space-y-6" do |f| %>
+        <input type="email" id="customer[email]" name="customer[email]" 
+            class="w-full border border-gray-300 rounded-full p-3 bg-white text-black placeholder-gray-400 focus:ring focus:ring-gray-400"
+            required placeholder="メールアドレス">
+
+        <input type="password" id="customer[password]" name="customer[password]" 
+            class="w-full border border-gray-300 rounded-full p-3 bg-white text-black placeholder-gray-400 focus:ring focus:ring-gray-400"
+            required placeholder="パスワード">
+
+        <%# ログインボタン %>
+        <button type="submit" class="w-48 bg-[#D6C8C8] text-white p-3 rounded-full hover:bg-[#CEBEBE] ">
+            ログイン
+        </button>
+    <% end %>
+
+    <%# パスワードリセットへのリンク %>
+    <a href="<%= new_password_path %>" class="text-sm text-gray-500 hover:text-black mt-2 block">
+        パスワードを忘れた場合はこちら
+    </a>
+
+    <%# 会員登録ボタン %>
+    <a href="<%= signup_path %>" class="w-48 mt-6 bg-[#9c3b3b] text-white p-3 rounded-full hover:bg-[#872f2f] flex items-center justify-center rounded-full">
+        会員登録へすすむ
+    </a>
+</div>

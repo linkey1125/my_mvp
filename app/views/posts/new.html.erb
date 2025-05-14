@@ -1,0 +1,17 @@
+<div class="container mx-auto p-6">
+    <h2 class="text-xl font-bold text-black mb-6">新規投稿</h2>
+
+    <%= form_with model: @post, url: posts_path, local: true, class: "w-96 space-y-6" do |f| %>
+        <%= f.text_field :title, placeholder: "タイトル", 
+            class: "w-full border border-gray-300 rounded-full p-3 bg-white text-black placeholder-gray-400" %>
+
+        <%= f.text_area :content, placeholder: "投稿内容", 
+            class: "w-full border border-gray-300 rounded-lg p-3 bg-white text-black placeholder-gray-400", rows: 5 %>
+
+        <%= f.submit "投稿する", class: "w-full bg-[#c8a07e] text-white p-3 rounded-full hover:bg-[#b38f70]" %>
+    <% end %>
+
+    <a href="<%= root_path %>" class="text-sm text-gray-500 hover:text-black mt-2 block">
+        トップページに戻る
+    </a>
+</div>
