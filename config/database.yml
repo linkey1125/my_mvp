@@ -15,13 +15,13 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  # For details on connection pooling, see Rails configuration guide
-  # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
   database: myapp_development
+  username: myapp
+  password: <%= ENV["DEVELOPMENT_DATABASE_PASSWORD"] %>
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
@@ -56,7 +56,7 @@ development:
 test:
   <<: *default
   database: myapp_test
-
+  
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
 # ever seen by anyone, they now have access to your database.
@@ -72,7 +72,8 @@ test:
 # URL environment variable explicitly:
 #
 production:
-  url: <%= ENV["MY_APP_DATABASE_URL"] %>
+  <<: *default
+  url: <%= ENV["DATABASE_URL"] %>
 #
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
