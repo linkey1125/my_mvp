@@ -1,19 +1,23 @@
+version: '3.8'
+
 services:
   db:
     image: postgres
     restart: always
     environment:
-      TZ: Asia/Tokyo
-      POSTGRES_PASSWORD: password
+      POSTGRES_USER: renderuser
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD} # Render の環境変数を利用
+      POSTGRES_DB: myapp_production
     volumes:
-      - postgresql_data:/var/lib/postgresql
+      - /var/lib/postgresql/data
     ports:
       - 5432:5432
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -d myapp_development -U postgres"]
+      test: ["CMD-SHELL", "pg_isready -d myapp_production -U renderuser"]
       interval: 10s
       timeout: 5s
       retries: 5
+
   web:
     build:
       context: .
@@ -23,16 +27,8 @@ services:
     stdin_open: true
     volumes:
       - .:/myapp
-      - bundle_data:/usr/local/bundle:cached
-      - node_modules:/myapp/node_modules
     environment:
-      TZ: Asia/Tokyo
-    ports:
-      - "3000:3000"
+      DATABASE_URL: ${DATABASE_URL} # Render の環境変数を利用
     depends_on:
       db:
         condition: service_healthy
-volumes:
-  bundle_data:
-  postgresql_data:
-  node_modules:
