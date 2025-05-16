@@ -19,8 +19,8 @@ test:
 production:
   main:
     <<: *default
-    database: <%= ENV["MAIN_DATABASE_NAME"] || "myapp_production" %>
+    url: <%= ENV["MAIN_DATABASE_URL"] || ENV["DATABASE_URL"] %>
 
   queue:
     <<: *default
-    database: <%= ENV["QUEUE_DATABASE_NAME"] || "queue_production" %>
+    url: <%= ENV["QUEUE_DATABASE_URL"] %>
