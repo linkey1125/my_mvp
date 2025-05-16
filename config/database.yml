@@ -5,7 +5,6 @@ default: &default
   host: <%= ENV["DATABASE_HOST"] || "localhost" %>
   username: <%= ENV["DATABASE_USER"] || "postgres" %>
   password: <%= ENV["DATABASE_PASSWORD"] || "password" %>
-  database: <%= ENV["DATABASE_NAME"] || "myapp_production" %>
 
 development:
   <<: *default
@@ -18,14 +17,6 @@ test:
   host: db
 
 production:
-  default: &default
-    adapter: postgresql
-    encoding: unicode
-    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-    username: <%= ENV["DATABASE_USER"] || "postgres" %>
-    password: <%= ENV["DATABASE_PASSWORD"] || "password" %>
-    host: <%= ENV["DATABASE_HOST"] || "localhost" %>
-
   main:
     <<: *default
     database: <%= ENV["MAIN_DATABASE_NAME"] || "myapp_production" %>
