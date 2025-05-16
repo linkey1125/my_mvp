@@ -18,8 +18,18 @@ test:
   host: db
 
 production:
-  <<: *default
-  database: <%= ENV["DATABASE_NAME"] || "myapp_production" %>
-  username: <%= ENV["DATABASE_USER"] || "postgres" %>
-  password: <%= ENV["DATABASE_PASSWORD"] || "password" %>
-  host: <%= ENV["DATABASE_HOST"] || "localhost" %>
+  default: &default
+    adapter: postgresql
+    encoding: unicode
+    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+    username: <%= ENV["DATABASE_USER"] || "postgres" %>
+    password: <%= ENV["DATABASE_PASSWORD"] || "password" %>
+    host: <%= ENV["DATABASE_HOST"] || "localhost" %>
+
+  main:
+    <<: *default
+    database: <%= ENV["MAIN_DATABASE_NAME"] || "myapp_production" %>
+
+  queue:
+    <<: *default
+    database: <%= ENV["QUEUE_DATABASE_NAME"] || "queue_production" %>
