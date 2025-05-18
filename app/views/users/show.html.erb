@@ -24,7 +24,6 @@
     <% end %>
 
     <%# ログアウトボタン %>
-    <a href="<%= logout_path %>" class="w-96 mt-6 bg-[#9c3b3b] text-white p-3 rounded-full hover:bg-[#872f2f] flex items-center justify-center">
-        ログアウト
-    </a>
+        <%= button_to "ログアウト", logout_path, method: :delete, class: "w-96 mt-6 bg-[#9c3b3b] text-white p-3 rounded-full hover:bg-[#872f2f] flex items-center justify-center" %>
+
 </div>

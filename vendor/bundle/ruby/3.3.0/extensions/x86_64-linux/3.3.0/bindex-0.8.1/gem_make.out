@@ -1,0 +1,18 @@
+current directory: /myapp/vendor/bundle/ruby/3.3.0/gems/bindex-0.8.1/ext/skiptrace
+/usr/local/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /myapp/vendor/bundle/ruby/3.3.0/gems/bindex-0.8.1/ext/skiptrace
+make DESTDIR\= sitearchdir\=./.gem.20250517-1-ijtufp sitelibdir\=./.gem.20250517-1-ijtufp clean
+
+current directory: /myapp/vendor/bundle/ruby/3.3.0/gems/bindex-0.8.1/ext/skiptrace
+make DESTDIR\= sitearchdir\=./.gem.20250517-1-ijtufp sitelibdir\=./.gem.20250517-1-ijtufp
+compiling cruby.c
+linking shared-object skiptrace/internal/cruby.so
+
+current directory: /myapp/vendor/bundle/ruby/3.3.0/gems/bindex-0.8.1/ext/skiptrace
+make DESTDIR\= sitearchdir\=./.gem.20250517-1-ijtufp sitelibdir\=./.gem.20250517-1-ijtufp install
+/usr/bin/install -c -m 0755 cruby.so ./.gem.20250517-1-ijtufp/skiptrace/internal
+
+current directory: /myapp/vendor/bundle/ruby/3.3.0/gems/bindex-0.8.1/ext/skiptrace
+make DESTDIR\= sitearchdir\=./.gem.20250517-1-ijtufp sitelibdir\=./.gem.20250517-1-ijtufp clean

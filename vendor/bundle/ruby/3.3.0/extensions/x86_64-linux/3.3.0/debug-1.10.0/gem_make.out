@@ -1,0 +1,26 @@
+current directory: /myapp/vendor/bundle/ruby/3.3.0/gems/debug-1.10.0/ext/debug
+/usr/local/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /myapp/vendor/bundle/ruby/3.3.0/gems/debug-1.10.0/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20250517-1-6oxyxr sitelibdir\=./.gem.20250517-1-6oxyxr clean
+
+current directory: /myapp/vendor/bundle/ruby/3.3.0/gems/debug-1.10.0/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20250517-1-6oxyxr sitelibdir\=./.gem.20250517-1-6oxyxr
+make: Warning: File 'debug.c' has modification time 7.9 s in the future
+compiling debug.c
+compiling iseq_collector.c
+linking shared-object debug/debug.so
+make: warning:  Clock skew detected.  Your build may be incomplete.
+
+current directory: /myapp/vendor/bundle/ruby/3.3.0/gems/debug-1.10.0/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20250517-1-6oxyxr sitelibdir\=./.gem.20250517-1-6oxyxr install
+make: Warning: File 'debug.c' has modification time 7.5 s in the future
+compiling debug.c
+compiling iseq_collector.c
+linking shared-object debug/debug.so
+/usr/bin/install -c -m 0755 debug.so ./.gem.20250517-1-6oxyxr/debug
+make: warning:  Clock skew detected.  Your build may be incomplete.
+
+current directory: /myapp/vendor/bundle/ruby/3.3.0/gems/debug-1.10.0/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20250517-1-6oxyxr sitelibdir\=./.gem.20250517-1-6oxyxr clean

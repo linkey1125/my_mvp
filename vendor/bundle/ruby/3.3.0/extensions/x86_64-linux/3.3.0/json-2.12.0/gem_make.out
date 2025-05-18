@@ -1,0 +1,28 @@
+current directory: /myapp/vendor/bundle/ruby/3.3.0/gems/json-2.12.0/ext/json/ext/parser
+/usr/local/bin/ruby extconf.rb
+checking for rb_enc_interned_str() in ruby.h... yes
+checking for rb_hash_new_capa() in ruby.h... yes
+checking for rb_hash_bulk_insert() in ruby.h... yes
+checking for strnlen() in string.h... yes
+checking for whether -std=c99 is accepted as CFLAGS... yes
+creating Makefile
+
+current directory: /myapp/vendor/bundle/ruby/3.3.0/gems/json-2.12.0/ext/json/ext/parser
+make DESTDIR\= sitearchdir\=./.gem.20250517-1-e169rm sitelibdir\=./.gem.20250517-1-e169rm clean
+
+current directory: /myapp/vendor/bundle/ruby/3.3.0/gems/json-2.12.0/ext/json/ext/parser
+make DESTDIR\= sitearchdir\=./.gem.20250517-1-e169rm sitelibdir\=./.gem.20250517-1-e169rm
+compiling parser.c
+linking shared-object json/ext/parser.so
+
+current directory: /myapp/vendor/bundle/ruby/3.3.0/gems/json-2.12.0/ext/json/ext/parser
+make DESTDIR\= sitearchdir\=./.gem.20250517-1-e169rm sitelibdir\=./.gem.20250517-1-e169rm install
+make: Warning: File 'Makefile' has modification time 7.1 s in the future
+linking shared-object json/ext/parser.so
+/usr/bin/install -c -m 0755 parser.so ./.gem.20250517-1-e169rm/json/ext
+make: warning:  Clock skew detected.  Your build may be incomplete.
+
+current directory: /myapp/vendor/bundle/ruby/3.3.0/gems/json-2.12.0/ext/json/ext/parser
+make DESTDIR\= sitearchdir\=./.gem.20250517-1-e169rm sitelibdir\=./.gem.20250517-1-e169rm clean
+make: Warning: File 'Makefile' has modification time 7 s in the future
+make: warning:  Clock skew detected.  Your build may be incomplete.

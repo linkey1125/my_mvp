@@ -6,8 +6,18 @@
 
     <div class="flex space-x-4">
         <%= image_tag "heart_icon.png", alt: "お気に入り", class: "w-6 h-6 hover:opacity-75" %>
-        <a href="<%= login_path %>">
+
+        <%# ログイン状態に応じてリンクを変更 %>
+    <% if logged_in? %>
+        <%= link_to user_path(current_user) do %>
             <%= image_tag "user_icon.png", alt: "マイページ", class: "w-6 h-6 hover:opacity-75" %>
-        </a>
+    <% end %>
+    <% else %>
+        <%= link_to login_path do %>
+            <%= image_tag "user_icon.png", alt: "ログイン", class: "w-6 h-6 hover:opacity-75" %>
+    <% end %>
+<% end %>
+
     </div>
 </header>
+
