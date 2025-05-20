@@ -1,18 +1,17 @@
 class PostsController < ApplicationController
   before_action :require_login, only: [:new, :create]
 
-  def index
-    @posts = Post.includes(:user, :item).order(created_at: :desc)
+def index
+  @posts = Post.includes(:user).order(created_at: :desc)
 
-    if params[:category].present?
-      @posts = @posts.joins(:item).where(items: { category: params[:category] })
-    end
+  if params[:category].present?
+    @posts = @posts.where(category: params[:category])
   end
+end
 
-  def new
-    @post = Post.new
-    @post.build_item # ネストされたフォーム用
-  end
+def new
+  @post = Post.new
+end
 
   def create
     @post = current_user.posts.build(post_params)
@@ -51,23 +50,23 @@ def destroy
   end
 end
 
-  def search
-  @posts = Post.includes(:item)
+def search
+  @posts = Post.all
 
   if params[:keyword].present?
     @posts = @posts.where("title LIKE ? OR content LIKE ?", "%#{params[:keyword]}%", "%#{params[:keyword]}%")
   end
 
   if params[:uv_cut_rate].present?
-    @posts = @posts.joins(:item).where(items: { uv_cut_rate: params[:uv_cut_rate] })
+    @posts = @posts.where(uv_cut_rate: params[:uv_cut_rate])
   end
 
   if params[:category].present?
-    @posts = @posts.joins(:item).where(items: { category: params[:category] })
+    @posts = @posts.where(category: params[:category])
   end
 
   if params[:price_range].present?
-    @posts = @posts.joins(:item).where(items: { price_range: params[:price_range] })
+    @posts = @posts.where(price_range: params[:price_range])
   end
 
   render :index
@@ -75,9 +74,10 @@ end
 
   private
 
-  def post_params
-    params.require(:post).permit(:title, :content, item_attributes: [:image, :uv_cut_rate, :category, :price_range])
-  end
+def post_params
+  params.require(:post).permit(:title, :content, :image, :uv_cut_rate, :category, :price_range)
+end
+
 
   def require_login
     redirect_to login_path, alert: "ログインしてください" unless session[:user_id]

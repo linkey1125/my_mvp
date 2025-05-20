@@ -17,10 +17,13 @@
   <div class="border border-gray-300 p-4 rounded-lg bg-white mb-4">
     <h3 class="text-lg font-bold"><%= link_to post.title, post_path(post), class: "text-blue-500 hover:underline" %></h3>
     <p class="text-gray-600"><%= post.content %></p>
-    <p class="text-sm text-gray-500">投稿者: <%= post.user.name %></p>
+    
+    <p>カテゴリ: <%= post.category %></p>
+    <p>金額: <%= post.price_range %></p>
+    <p>UVカット率: <%= post.uv_cut_rate %></p>
 
-    <% if post.user == current_user %>
-      <%= link_to "削除", post_path(post), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "text-sm text-red-500 hover:text-red-600" %>
+    <% if post.image.attached? %>
+      <%= image_tag post.image, class: "w-32 h-32 object-cover mt-2" %>
     <% end %>
   </div>
 <% end %>

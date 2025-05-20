@@ -1,44 +1,31 @@
-<div class="container mx-auto p-6">
-  <h2 class="text-xl font-bold text-black mb-6">投稿を編集</h2>
+<div class="flex items-center justify-center min-h-screen">
+  <div class="max-w-lg w-full bg-white p-6 rounded-lg shadow-md">
+    <h2 class="text-xl font-bold text-black mb-6">投稿を編集</h2>
 
-  <%= form_with model: @post, local: true, multipart: true do |f| %>
-    <div>
-      <%= f.label :title, "タイトル" %>
-      <%= f.text_field :title, class: "w-full border border-gray-300 rounded-full p-3 bg-white text-black" %>
-    </div>
+    <%= form_with model: @post, local: true, multipart: true do |f| %>
+      <div class="space-y-4">
+        <%= f.label :title, "タイトル", class: "block text-sm font-medium text-gray-700" %>
+        <%= f.text_field :title, class: "w-full border rounded-lg p-2 bg-white text-black" %>
 
-    <div>
-      <%= f.label :content, "投稿内容" %>
-      <%= f.text_area :content, class: "w-full border border-gray-300 rounded-lg p-3 bg-white text-black", rows: 5 %>
-    </div>
+        <%= f.label :content, "投稿内容", class: "block text-sm font-medium text-gray-700" %>
+        <%= f.text_area :content, class: "w-full border rounded-lg p-2 bg-white text-black", rows: 5 %>
 
-    <h3 class="text-lg font-semibold text-black mt-4">アイテム情報</h3>
+        <%= f.label :uv_cut_rate, "UVカット率", class: "block text-sm font-medium text-gray-700" %>
+        <%= f.select :uv_cut_rate, ["92%以上", "95%以上", "99%以上", "99.9%以上"], {}, class: "w-full border rounded-lg p-2 bg-white text-black", required: true %>
 
-    <%= f.fields_for :item do |item_form| %>
-<div>
-  <%= f.label :uv_cut_rate, "UVカット率" %>
-  <%= f.select :uv_cut_rate, ["92%以上", "95%以上", "99%以上", "99.9%以上"], {}, class: "border rounded-lg p-2 bg-white text-black", required: true %>
-</div>
+        <%= f.label :category, "カテゴリ", class: "block text-sm font-medium text-gray-700" %>
+        <%= f.select :category, ["アパレル", "日傘", "その他"], {}, class: "w-full border rounded-lg p-2 bg-white text-black", required: true %>
 
-<div>
-  <%= f.label :category, "カテゴリ" %>
-  <%= f.select :category, ["アパレル", "日傘", "その他"], {}, class: "border rounded-lg p-2 bg-white text-black", required: true %>
-</div>
+        <%= f.label :price_range, "金額", class: "block text-sm font-medium text-gray-700" %>
+        <%= f.select :price_range, ["～3000円", "～5000円", "～10000円", "～15000円", "それ以上"], {}, class: "w-full border rounded-lg p-2 bg-white text-black", required: true %>
 
-<div>
-  <%= f.label :price_range, "金額" %>
-  <%= f.select :price_range, ["～3000円", "～5000円", "～10000円", "～15000円", "それ以上"], {}, class: "border rounded-lg p-2 bg-white text-black", required: true %>
-</div>
+        <%= f.label :image, "画像", class: "block text-sm font-medium text-gray-700" %>
+        <%= f.file_field :image, required: true, class: "w-full border rounded-lg p-2 bg-white text-black" %>
 
-<div>
-  <%= f.label :image, "画像" %>
-  <%= f.file_field :image, required: true %>
-</div>
-
+        <%= f.submit "更新する", class: "w-full bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600" %>
+      </div>
     <% end %>
 
-    <%= f.submit "更新する", class: "w-full bg-blue-500 text-white p-3 rounded-full hover:bg-blue-600" %>
-  <% end %>
-
-  <%= link_to "キャンセル", post_path(@post), class: "text-sm text-gray-500 hover:text-black mt-2 block" %>
+    <%= link_to "キャンセル", post_path(@post), class: "text-sm text-gray-500 hover:text-black mt-2 block" %>
+  </div>
 </div>
