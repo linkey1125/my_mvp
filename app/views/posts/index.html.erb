@@ -1,19 +1,36 @@
 <div class="container mx-auto p-6">
-    <h2 class="text-xl font-bold text-black mb-6">ユーザーの投稿一覧</h2>
+  <h2 class="text-xl font-bold text-black mb-6">投稿検索</h2>
 
-    <% @posts.each do |post| %>
-        <div class="border border-gray-300 p-4 rounded-lg bg-white mb-4">
-            <h3 class="text-lg font-bold"><%= post.title %></h3>
-            <p class="text-gray-600"><%= post.content %></p>
-            <p class="text-sm text-gray-500">投稿者: <%= post.user.name %> | 投稿日: <%= post.created_at.strftime('%Y-%m-%d %H:%M') %></p>
-        </div>
-    <% end %>
+  <%= form_with url: search_posts_path, method: :get, local: true, class: "mb-6" do |f| %>
+    <div class="flex space-x-4">
+      <%= f.text_field :keyword, placeholder: "キーワード検索", class: "w-full border border-gray-300 rounded-full p-3 bg-white text-black" %>
+      <%= f.select :uv_cut_rate, ["", "92%以上", "95%以上", "99%以上", "99.9%以上"], { prompt: "UVカット率" }, class: "border rounded-lg p-2 bg-white text-black" %>
+      <%= f.select :category, ["", "アパレル", "日傘", "その他"], { prompt: "カテゴリ" }, class: "border rounded-lg p-2 bg-white text-black" %>
+      <%= f.select :price_range, ["", "～3000円", "～5000円", "～10000円", "～15000円", "それ以上"], { prompt: "価格帯" }, class: "border rounded-lg p-2 bg-white text-black" %>
+      <%= f.submit "検索", class: "bg-blue-500 text-white p-3 rounded-full hover:bg-blue-600" %>
+    </div>
+  <% end %>
 
-    <% if session[:user_id] %>
-        <a href="<%= new_post_path %>" class="w-full bg-[#c8a07e] text-white p-3 rounded-full hover:bg-[#b38f70] text-center">
-            新規投稿する
-        </a>
-    <% else %>
-        <p class="text-gray-500 text-center mt-4">投稿するには <%= link_to 'ログイン', login_path, class: "text-blue-500 hover:underline" %> が必要です。</p>
+  <h2 class="text-xl font-bold text-black mb-6">ユーザーの投稿一覧</h2>
+
+<% @posts.each do |post| %>
+  <div class="border border-gray-300 p-4 rounded-lg bg-white mb-4">
+    <h3 class="text-lg font-bold"><%= link_to post.title, post_path(post), class: "text-blue-500 hover:underline" %></h3>
+    <p class="text-gray-600"><%= post.content %></p>
+    <p class="text-sm text-gray-500">投稿者: <%= post.user.name %></p>
+
+    <% if post.user == current_user %>
+      <%= link_to "削除", post_path(post), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "text-sm text-red-500 hover:text-red-600" %>
     <% end %>
+  </div>
+<% end %>
+
+
+  <% if session[:user_id] %>
+    <a href="<%= new_post_path %>" class="w-full bg-[#c8a07e] text-white p-3 rounded-full hover:bg-[#b38f70] text-center">
+      新規投稿する
+    </a>
+  <% else %>
+    <p class="text-gray-500 text-center mt-4">投稿するには <%= link_to 'ログイン', login_path, class: "text-blue-500 hover:underline" %> が必要です。</p>
+  <% end %>
 </div>

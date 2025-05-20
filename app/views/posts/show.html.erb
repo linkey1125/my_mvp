@@ -1,0 +1,32 @@
+<div class="container mx-auto p-6">
+  <h2 class="text-xl font-bold text-black mb-6"><%= @post.title %></h2>
+
+  <div class="flex items-start space-x-6"> <!-- 横並びレイアウト -->
+    <!-- 左側（画像） -->
+    <% if @post.item&.image.attached? %>
+      <div class="w-1/3">
+        <%= image_tag @post.item.image, class: "w-full rounded-lg shadow-md" %>
+      </div>
+    <% end %>
+
+    <!-- 右側（詳細情報） -->
+    <div class="w-2/3 bg-white p-4 rounded-lg shadow-md">
+      <p class="text-gray-700"><%= @post.content %></p>
+
+      <% if @post.item.present? %>
+        <h3 class="text-lg font-semibold text-black mt-4">アイテム情報</h3>
+        <p>UVカット率: <%= @post.item.uv_cut_rate %></p>
+        <p>カテゴリ: <%= @post.item.category %></p>
+        <p>金額: <%= @post.item.price_range %></p>
+      <% end %>
+    </div>
+  </div>
+
+<div class="flex justify-end space-x-4 mt-4">
+  <% if @post.user == current_user %>
+    <%= link_to "編集", edit_post_path(@post), class: "bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600" %>
+    <%= link_to "削除", post_path(@post), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "bg-red-500 text-white p-2 rounded-md hover:bg-red-600" %>
+  <% end %>
+</div>
+
+</div>

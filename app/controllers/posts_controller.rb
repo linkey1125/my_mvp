@@ -2,15 +2,16 @@ class PostsController < ApplicationController
   before_action :require_login, only: [:new, :create]
 
   def index
-    @posts = Post.includes(:user).order(created_at: :desc)
+    @posts = Post.includes(:user, :item).order(created_at: :desc)
 
     if params[:category].present?
-      @posts = @posts.where(category: params[:category])
+      @posts = @posts.joins(:item).where(items: { category: params[:category] })
     end
   end
 
   def new
     @post = Post.new
+    @post.build_item # ネストされたフォーム用
   end
 
   def create
@@ -23,10 +24,59 @@ class PostsController < ApplicationController
     end
   end
 
+  def show
+    @post = Post.find(params[:id])
+  end
+
+  def edit
+    @post = current_user.posts.find(params[:id])
+  end
+
+  def update
+    @post = current_user.posts.find(params[:id])
+    if @post.update(post_params)
+      redirect_to post_path(@post), notice: "投稿を更新しました！"
+    else
+      flash[:alert] = @post.errors.full_messages.join(", ")
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+def destroy
+  @post = current_user.posts.find(params[:id])
+  if @post.destroy
+    redirect_to root_path, notice: "投稿を削除しました！"
+  else
+    redirect_to post_path(@post), alert: "投稿の削除に失敗しました"
+  end
+end
+
+  def search
+  @posts = Post.includes(:item)
+
+  if params[:keyword].present?
+    @posts = @posts.where("title LIKE ? OR content LIKE ?", "%#{params[:keyword]}%", "%#{params[:keyword]}%")
+  end
+
+  if params[:uv_cut_rate].present?
+    @posts = @posts.joins(:item).where(items: { uv_cut_rate: params[:uv_cut_rate] })
+  end
+
+  if params[:category].present?
+    @posts = @posts.joins(:item).where(items: { category: params[:category] })
+  end
+
+  if params[:price_range].present?
+    @posts = @posts.joins(:item).where(items: { price_range: params[:price_range] })
+  end
+
+  render :index
+end
+
   private
 
   def post_params
-    params.require(:post).permit(:title, :content)
+    params.require(:post).permit(:title, :content, item_attributes: [:image, :uv_cut_rate, :category, :price_range])
   end
 
   def require_login

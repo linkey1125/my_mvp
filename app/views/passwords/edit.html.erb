@@ -1,6 +1,15 @@
-<h2>新しいパスワードを入力</h2>
-<%= form_with model: @user, url: password_path(@user.reset_token), method: :patch, local: true do |f| %>
-  <%= f.password_field :password, placeholder: "新しいパスワード" %>
-  <%= f.password_field :password_confirmation, placeholder: "確認用パスワード" %>
-  <%= f.submit "パスワードを変更" %>
-<% end %>
+<div style="display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:100vh; background-color:#fff; font-family: Arial, sans-serif; color:#000;">
+  <h2 style="font-size:24px; font-weight:bold; text-align:center; margin-bottom:24px;">パスワードリセット</h2>
+
+  <%= form_with model: @user, url: password_reset_path(token: @user.reset_password_token), method: :patch, local: true, style: "width:384px; display:flex; flex-direction: column; gap:24px;" do |f| %>
+    <%= f.password_field :password, placeholder: "新しいパスワード", required: true,
+      style: "width:100%; padding:12px; border:1px solid #ccc; border-radius:9999px; background:#fff;" %>
+
+    <%= f.password_field :password_confirmation, placeholder: "パスワード（確認用）", required: true,
+      style: "width:100%; padding:12px; border:1px solid #ccc; border-radius:9999px; background:#fff;" %>
+
+    <%= f.submit "パスワードリセット",
+  style: "width:192px; background-color:#D6C8C8; color:#fff; padding:12px; border-radius:9999px; font-weight:bold; border:none; cursor:pointer; display:block; margin:0 auto;" %>
+
+  <% end %>
+</div>

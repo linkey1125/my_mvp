@@ -1,17 +1,39 @@
-<div class="container mx-auto p-6">
+<div class="flex items-center justify-center min-h-screen">
+  <div class="w-96">
     <h2 class="text-xl font-bold text-black mb-6">新規投稿</h2>
 
-    <%= form_with model: @post, url: posts_path, local: true, class: "w-96 space-y-6" do |f| %>
-        <%= f.text_field :title, placeholder: "タイトル", 
-            class: "w-full border border-gray-300 rounded-full p-3 bg-white text-black placeholder-gray-400" %>
+    <%= form_with model: @post, url: posts_path, local: true, class: "space-y-6" do |f| %>
+      <%= f.text_field :title, placeholder: "タイトル", class: "w-full border border-gray-300 rounded-full p-3 bg-white text-black placeholder-gray-400" %>
+      <%= f.text_area :content, placeholder: "投稿内容", class: "w-full border border-gray-300 rounded-lg p-3 bg-white text-black placeholder-gray-400", rows: 5 %>
 
-        <%= f.text_area :content, placeholder: "投稿内容", 
-            class: "w-full border border-gray-300 rounded-lg p-3 bg-white text-black placeholder-gray-400", rows: 5 %>
+      <h3 class="text-lg font-semibold text-black">アイテム情報</h3>
 
-        <%= f.submit "投稿する", class: "w-full bg-[#c8a07e] text-white p-3 rounded-full hover:bg-[#b38f70]" %>
+      <%= f.fields_for :item do |item_form| %>
+<div>
+  <%= f.label :uv_cut_rate, "UVカット率" %>
+  <%= f.select :uv_cut_rate, ["92%以上", "95%以上", "99%以上", "99.9%以上"], {}, class: "border rounded-lg p-2 bg-white text-black", required: true %>
+</div>
+
+<div>
+  <%= f.label :category, "カテゴリ" %>
+  <%= f.select :category, ["アパレル", "日傘", "その他"], {}, class: "border rounded-lg p-2 bg-white text-black", required: true %>
+</div>
+
+<div>
+  <%= f.label :price_range, "金額" %>
+  <%= f.select :price_range, ["～3000円", "～5000円", "～10000円", "～15000円", "それ以上"], {}, class: "border rounded-lg p-2 bg-white text-black", required: true %>
+</div>
+
+<div>
+  <%= f.label :image, "画像" %>
+  <%= f.file_field :image, required: true %>
+</div>
+
+      <% end %>
+
+      <%= f.submit "投稿する", class: "w-full bg-[#c8a07e] text-white p-3 rounded-full hover:bg-[#b38f70]" %>
     <% end %>
 
-    <a href="<%= root_path %>" class="text-sm text-gray-500 hover:text-black mt-2 block">
-        トップページに戻る
-    </a>
+    <a href="<%= root_path %>" class="text-sm text-gray-500 hover:text-black mt-2 block">トップページに戻る</a>
+  </div>
 </div>

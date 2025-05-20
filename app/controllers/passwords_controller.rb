@@ -5,28 +5,29 @@ class PasswordsController < ApplicationController
   def create
     user = User.find_by(email: params[:email])
     if user
-      # 仮の処理（本番ではメール送信機能を追加）
-      flash[:notice] = "パスワードリセット用のリンクを送信しました"
-      redirect_to login_path
+      user.generate_password_reset_token!
+      PasswordMailer.with(user: user).password_reset.deliver_later
+      redirect_to login_path, notice: "パスワードリセット用のメールを送信しました。"
     else
-      flash[:alert] = "メールアドレスが見つかりません"
+      flash[:alert] = "メールアドレスが見つかりません。"
       render :new, status: :unprocessable_entity
     end
   end
 
-  def edit
-    @user = User.find_by(reset_token: params[:token])
-    unless @user
-      redirect_to login_path, alert: "無効なリンクです"
-    end
+def edit
+  @user = User.find_by(reset_password_token: params[:token])
+  if @user.nil? || @user.password_reset_expired?
+    redirect_to login_path, alert: "パスワードリセットの有効期限が切れています。"
   end
+end
 
   def update
-    @user = User.find_by(reset_token: params[:token])
-    if @user.update(password_params)
-      flash[:notice] = "パスワードが変更されました"
-      redirect_to login_path
+    @user = User.find_by(reset_password_token: params[:token])
+    if @user&.update(password_params)
+      @user.clear_password_reset_token!
+      redirect_to login_path, notice: "パスワードを変更しました。"
     else
+      flash[:alert] = "パスワード変更に失敗しました。"
       render :edit, status: :unprocessable_entity
     end
   end

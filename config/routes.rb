@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   root 'posts#index' # 投稿一覧をトップページに設定
 
-  resources :posts, only: [:index, :new, :create]
+  resources :posts do
+    collection do
+      get :search # 検索機能の追加
+    end
+  end
 
   resources :users, only: [:new, :create, :show, :edit, :update]
   get 'signup', to: 'users#new', as: 'signup'
@@ -12,9 +16,14 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy', as: 'logout'
 
   resources :passwords, only: [:new, :create, :edit, :update]
+  get 'password/reset', to: 'passwords#new', as: 'password_reset'
+  post 'password/reset', to: 'passwords#create'
+  get 'password/reset/edit', to: 'passwords#edit', as: 'edit_password_reset'
+  patch 'password/reset', to: 'passwords#update'
 
   resources :favorites, only: [:create, :destroy]
-  resources :items, only: [:index, :show]
+
+  resources :items, only: [:index, :show, :new, :create, :edit, :update, :destroy] # 投稿・編集・削除の追加
   post 'items/:id/toggle_favorite', to: 'items#toggle_favorite', as: 'toggle_favorite'
 
   get 'mypage', to: 'users#show'
