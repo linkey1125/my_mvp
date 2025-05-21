@@ -1,0 +1,11 @@
+<h2 class="text-xl font-bold mb-4">お気に入り一覧</h2>
+
+<% @favorites.each do |favorite| %>
+  <% post = favorite.post %>
+  <div class="border p-4 rounded-lg bg-white mb-4">
+    <h3 class="text-lg font-bold">
+      <%= link_to post.title, post_path(post), class: "text-blue-500 hover:underline" %>
+    </h3>
+    <p class="text-gray-600"><%= post.content %></p>
+  </div>
+<% end %>

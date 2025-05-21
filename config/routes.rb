@@ -21,10 +21,8 @@ Rails.application.routes.draw do
   get 'password/reset/edit', to: 'passwords#edit', as: 'edit_password_reset'
   patch 'password/reset', to: 'passwords#update'
 
-  resources :favorites, only: [:create, :destroy]
-
-  resources :items, only: [:index, :show, :new, :create, :edit, :update, :destroy] # 投稿・編集・削除の追加
-  post 'items/:id/toggle_favorite', to: 'items#toggle_favorite', as: 'toggle_favorite'
+  resources :favorites, only: [:create, :destroy, :index]
+  
 
   get 'mypage', to: 'users#show'
 end
