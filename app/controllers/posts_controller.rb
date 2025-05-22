@@ -58,9 +58,9 @@ def search
   end
 
   if params[:uv_cut_rate].present?
-    @posts = @posts.where(uv_cut_rate: params[:uv_cut_rate])
+    @posts = @posts.where("uv_cut_rate LIKE ?", "%#{params[:uv_cut_rate]}%")
   end
-
+  
   if params[:category].present?
     @posts = @posts.where(category: params[:category])
   end
