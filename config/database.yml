@@ -11,6 +11,11 @@ development:
   database: myapp_development
   host: db
 
+  queue:
+    <<: *default
+    database: myapp_queue
+    host: db
+
 test:
   <<: *default
   database: myapp_test
