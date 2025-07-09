@@ -20,6 +20,4 @@ def password_reset_expired?
   return false if reset_password_sent_at.nil? # nil の場合は期限切れではない
   reset_password_sent_at < 1.hour.ago
 end
-
-
 end

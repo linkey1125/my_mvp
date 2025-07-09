@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'posts#index' # 投稿一覧をトップページに設定
+  root "posts#index" # 投稿一覧をトップページに設定
 
   resources :posts do
     collection do
@@ -7,22 +7,22 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, only: [:new, :create, :show, :edit, :update]
-  get 'signup', to: 'users#new', as: 'signup'
+  resources :users, only: [ :new, :create, :show, :edit, :update ]
+  get "signup", to: "users#new", as: "signup"
 
-  resources :sessions, only: [:new, :create, :destroy]
-  get 'login', to: 'sessions#new', as: 'login'
-  post 'login', to: 'sessions#create'
-  delete 'logout', to: 'sessions#destroy', as: 'logout'
+  resources :sessions, only: [ :new, :create, :destroy ]
+  get "login", to: "sessions#new", as: "login"
+  post "login", to: "sessions#create"
+  delete "logout", to: "sessions#destroy", as: "logout"
 
-  resources :passwords, only: [:new, :create, :edit, :update]
-  get 'password/reset', to: 'passwords#new', as: 'password_reset'
-  post 'password/reset', to: 'passwords#create'
-  get 'password/reset/edit', to: 'passwords#edit', as: 'edit_password_reset'
-  patch 'password/reset', to: 'passwords#update'
+  resources :passwords, only: [ :new, :create, :edit, :update ]
+  get "password/reset", to: "passwords#new", as: "password_reset"
+  post "password/reset", to: "passwords#create"
+  get "password/reset/edit", to: "passwords#edit", as: "edit_password_reset"
+  patch "password/reset", to: "passwords#update"
 
-  resources :favorites, only: [:create, :destroy, :index]
-  
+  resources :favorites, only: [ :create, :destroy, :index ]
 
-  get 'mypage', to: 'users#show'
+
+  get "mypage", to: "users#show"
 end

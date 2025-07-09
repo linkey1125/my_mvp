@@ -4,4 +4,3 @@ class PasswordMailerPreview < ActionMailer::Preview
     PasswordMailer.password_reset(user)
   end
 end
-

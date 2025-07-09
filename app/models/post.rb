@@ -3,7 +3,7 @@ class Post < ApplicationRecord
   has_one_attached :image
   has_many :favorites, dependent: :destroy
   has_many :favorited_users, through: :favorites, source: :user
-  
+
   validates :title, presence: true
   validates :content, presence: true
   validates :category, presence: true
