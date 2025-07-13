@@ -4,8 +4,16 @@ class PostsController < ApplicationController
 def index
   @posts = Post.includes(:user).order(created_at: :desc)
 
+  @recommended_posts = Post.order(created_at: :desc).limit(3)
+
   if params[:category].present?
     @posts = @posts.where(category: params[:category])
+  end
+
+  if current_user
+    @recommended_posts = current_user.recommended_posts
+  else
+    @recommended_posts = Post.order(created_at: :desc).limit(5) # 非ログインなら新着を表示など
   end
 end
 
@@ -59,6 +67,11 @@ def search
     keywords = normalized_keyword.split(/\s+/)
     keywords.each do |keyword|
       @posts = @posts.where("title LIKE ? OR content LIKE ?", "%#{keyword}%", "%#{keyword}%")
+    end
+
+    # 検索履歴を保存（ログインユーザーのみ）
+    if current_user
+      SearchHistory.create(user: current_user, keyword: params[:keyword])
     end
   end
 
