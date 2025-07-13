@@ -24,7 +24,7 @@ end
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.includes(reviews: :user).find(params[:id])
   end
 
   def edit
