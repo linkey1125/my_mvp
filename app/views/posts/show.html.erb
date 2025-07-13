@@ -1,3 +1,24 @@
+<% content_for :head do %>
+  <meta property="og:title" content="<%= @post.title %>" />
+  <meta property="og:description" content="<%= truncate(strip_tags(@post.content), length: 100) %>" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="<%= request.original_url %>" />
+  <% if @post.image.attached? %>
+    <meta property="og:image" content="<%= request.base_url + url_for(@post.image).sub(/\Ahttps?:\/\/[^\/]+/, '') %>" />
+  <% else %>
+    <meta property="og:image" content="<%= asset_url('default_og_image.png') %>" />
+  <% end %>
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="<%= @post.title %>" />
+  <meta name="twitter:description" content="<%= truncate(strip_tags(@post.content), length: 100) %>" />
+  <% if @post.image.attached? %>
+    <meta name="twitter:image" content="<%= request.base_url + url_for(@post.image).sub(/\Ahttps?:\/\/[^\/]+/, '') %>" />
+  <% else %>
+    <meta name="twitter:image" content="<%= asset_url('default_og_image.png') %>" />
+  <% end %>
+<% end %>
+
 <div class="container mx-auto p-6 relative">
   <h2 class="text-xl font-bold text-black mb-6"><%= @post.title %></h2>
 
@@ -32,16 +53,15 @@
     </div>
   </div>
 
-<div class="flex justify-end space-x-4 mt-4">
-  <% if @post.user == current_user %>
-    <%= link_to edit_post_path(@post), class: "bg-[#531419] text-white p-2 rounded-md hover:opacity-80 flex items-center space-x-2" do %>
-      <span>✏️</span> <span>編集</span>
-    <% end %>
+  <div class="flex justify-end space-x-4 mt-4">
+    <% if @post.user == current_user %>
+      <%= link_to edit_post_path(@post), class: "bg-[#531419] text-white p-2 rounded-md hover:opacity-80 flex items-center space-x-2" do %>
+        <span>✏️</span> <span>編集</span>
+      <% end %>
 
-    <%= link_to post_path(@post), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "bg-[#D6C8C8] text-black p-2 rounded-md hover:opacity-80 flex items-center space-x-2" do %>
-      <span>🗑️</span> <span>削除</span>
+      <%= link_to post_path(@post), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "bg-[#D6C8C8] text-black p-2 rounded-md hover:opacity-80 flex items-center space-x-2" do %>
+        <span>🗑️</span> <span>削除</span>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
-
+  </div>
 </div>
