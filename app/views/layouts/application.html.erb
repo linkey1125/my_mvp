@@ -22,23 +22,30 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
-  <body class="font-sans bg-gray-100">
-
+  <body class="font-sans bg-gray-100 min-h-screen flex flex-col">
     <%# ======= 共通のヘッダーを呼び出し ======= %>
     <%= render "shared/header" %>
 
     <%# フラッシュメッセージの表示 %>
-    <% if flash[:alert].present? %>
+    <div class="container mx-auto px-4 w-full max-w-7xl">
+      <% if flash[:alert].present? %>
         <div class="bg-red-500 text-white text-center p-3 rounded mb-4">
-            <%= flash[:alert] %>
+          <%= flash[:alert] %>
         </div>
-    <% end %>
+      <% end %>
 
-    <% if flash[:notice].present? %>
+      <% if flash[:notice].present? %>
         <div class="bg-green-500 text-white text-center p-3 rounded mb-4">
-            <%= flash[:notice] %>
+          <%= flash[:notice] %>
         </div>
-    <% end %>
-    <%= yield %>
+      <% end %>
+    </div>
+
+    <%# ページごとのコンテンツを中央に寄せて余白を付ける %>
+    <main class="container mx-auto px-4 flex-grow w-full max-w-7xl">
+      <%= yield %>
+    </main>
+
+    <%# フッターを入れたい場合はここに追加可能 %>
   </body>
 </html>

@@ -1,19 +1,31 @@
 <!-- app/views/posts/index.html.erb -->
 
-<div class="container mx-auto p-6">
+<div class="container mx-auto px-4 py-6">
   <h2 class="text-xl font-bold text-black mb-6">投稿検索</h2>
 
-  <%= form_with url: search_posts_path, method: :get, local: true, class: "mb-0" do |f| %>
-    <div class="flex space-x-4">
+  <%= form_with url: search_posts_path, method: :get, local: true, class: "mb-6" do |f| %>
+    <div class="flex flex-col lg:flex-row gap-4">
       <%= f.text_field :keyword, placeholder: "キーワード検索", class: "w-full border border-gray-300 rounded-full p-3 bg-white text-black" %>
-      <%= f.select :uv_cut_rate, [["UVカット率", ""], "95%-97.9%", "98%-98.9%", "99%-99.8%", "99.9%以上"], {}, class: "border rounded-lg p-2 bg-white text-black" %>
-      <%= f.select :category, [["カテゴリ", ""], "アパレル", "日傘", "その他"], {}, class: "border rounded-lg p-2 bg-white text-black" %>
-      <%= f.select :price_range, [["価格帯", ""], "1-2999円", "3000-4999円", "5000-9999円", "10000-11999円", "12000円以上"], {}, class: "border rounded-lg p-2 bg-white text-black" %>
-      <%= f.submit "検索", class: "bg-[#9c3b3b] text-white p-3 rounded-full hover:bg-[#872f2f]" %>
+
+      <div class="flex flex-col sm:flex-row gap-4 w-full">
+        <%= f.select :uv_cut_rate,
+              [["UVカット率", ""], "95%-97.9%", "98%-98.9%", "99%-99.8%", "99.9%以上"],
+              {}, class: "w-full border rounded-lg p-2 bg-white text-black" %>
+
+        <%= f.select :category,
+              [["カテゴリ", ""], "アパレル", "日傘", "その他"],
+              {}, class: "w-full border rounded-lg p-2 bg-white text-black" %>
+
+        <%= f.select :price_range,
+              [["価格帯", ""], "1-2999円", "3000-4999円", "5000-9999円", "10000-11999円", "12000円以上"],
+              {}, class: "w-full border rounded-lg p-2 bg-white text-black" %>
+      </div>
+
+      <%= f.submit "検索", class: "bg-[#9c3b3b] text-white px-6 py-3 rounded-full hover:bg-[#872f2f] w-full lg:w-auto" %>
     </div>
   <% end %>
 
-  <div class="flex items-center justify-between mb-6">
+  <div class="flex flex-col sm:flex-row items-center justify-between mb-6 gap-4">
     <h2 class="text-xl font-bold text-black">ユーザーの投稿一覧</h2>
     <%= link_to "ランキングを見る", ranking_posts_path, class: "text-blue-600 hover:underline font-semibold" %>
   </div>
