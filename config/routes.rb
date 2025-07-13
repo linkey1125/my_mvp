@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
+  get "reviews/create"
+  get "reviews/destroy"
   root "posts#index" # 投稿一覧をトップページに設定
 
   resources :posts do
     collection do
       get :search # 検索機能の追加
     end
+    resources :reviews, only: [:create, :destroy]
   end
 
   resources :users, only: [ :new, :create, :show, :edit, :update ]
