@@ -30,4 +30,6 @@ Rails.application.routes.draw do
 
 
   get "mypage", to: "users#show"
+  get "/terms", to: "static_pages#terms"
+  get "/privacy", to: "static_pages#privacy"
 end
