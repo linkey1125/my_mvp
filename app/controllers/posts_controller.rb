@@ -54,8 +54,12 @@ end
 def search
   @posts = Post.all
 
-  if params[:keyword].present?
-    @posts = @posts.where("title LIKE ? OR content LIKE ?", "%#{params[:keyword]}%", "%#{params[:keyword]}%")
+  if params[:keyword].present? && params[:keyword].strip != ""
+    normalized_keyword = params[:keyword].strip.gsub("　", " ")
+    keywords = normalized_keyword.split(/\s+/)
+    keywords.each do |keyword|
+      @posts = @posts.where("title LIKE ? OR content LIKE ?", "%#{keyword}%", "%#{keyword}%")
+    end
   end
 
   if params[:uv_cut_rate].present?
@@ -72,6 +76,13 @@ def search
 
   render :index
 end
+
+def autocomplete
+  query = params[:q].to_s.strip.gsub("　", " ") # 全角スペースを半角に変換
+  titles = Post.where("title LIKE ?", "%#{query}%").limit(10).pluck(:title)
+  render json: titles
+end
+
 
 def ranking
   @posts_by_views = Post.order_by_views.limit(10)
