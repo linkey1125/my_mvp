@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favorite_posts, through: :favorites, source: :post
   has_many :reviews, dependent: :destroy
+  has_many :search_histories
   
   validates :email, presence: true, uniqueness: true
   validates :password, presence: true, length: { minimum: 6 }, if: -> { new_record? || changes[:crypted_password] }
@@ -27,4 +28,19 @@ class User < ApplicationRecord
     return false if reset_password_sent_at.nil?
     reset_password_sent_at < 1.hour.ago
   end
+
+def recommended_posts(limit = 10)
+  keywords = search_histories.order(created_at: :desc).limit(5).pluck(:keyword).uniq
+  return Post.order(created_at: :desc).limit(limit) if keywords.empty?
+
+  query_fragments = []
+  query_params = []
+  keywords.each do |kw|
+    query_fragments << "(title LIKE ? OR content LIKE ?)"
+    query_params.push("%#{kw}%", "%#{kw}%")
+  end
+
+  Post.where(query_fragments.join(" OR "), *query_params).limit(limit)
+end
+
 end

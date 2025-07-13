@@ -1,4 +1,3 @@
-<!-- app/views/posts/index.html.erb -->
 <div class="container mx-auto px-4 py-6">
   <h2 class="text-xl font-bold text-black mb-6">投稿検索</h2>
 
@@ -25,6 +24,26 @@
       <%= f.submit "検索", class: "bg-[#9c3b3b] text-white px-6 py-3 rounded-full hover:bg-[#872f2f] w-full lg:w-auto" %>
     </div>
   <% end %>
+
+<% if @recommended_posts.present? %>
+  <h2 class="text-xl font-bold text-black mb-4">おすすめの投稿</h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+    <% @recommended_posts.each do |post| %>
+      <div class="border border-gray-300 p-4 rounded-lg bg-white shadow-md relative">
+        <h3 class="text-lg font-bold">
+          <%= link_to post.title, post_path(post), class: "text-blue-500 hover:underline" %>
+        </h3>
+        <% if post.image.attached? %>
+          <%= image_tag post.image, class: "w-32 h-32 object-cover mt-2" %>
+        <% end %>
+        <p class="text-gray-600 mt-2"><%= truncate(post.content, length: 100) %></p>
+        <p>カテゴリ: <%= post.category %></p>
+        <p>金額: <%= post.price_range %></p>
+        <p>UVカット率: <%= post.uv_cut_rate %></p>
+      </div>
+    <% end %>
+  </div>
+<% end %>
 
   <div class="flex flex-col sm:flex-row items-center justify-between mb-6 gap-4">
     <h2 class="text-xl font-bold text-black">ユーザーの投稿一覧</h2>
@@ -70,4 +89,5 @@
     </p>
   <% end %>
 </div>
+
 <%= javascript_include_tag "posts_autocomplete", type: "module" %>
