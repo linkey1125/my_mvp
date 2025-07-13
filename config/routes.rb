@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :posts do
     collection do
       get :search # 検索機能の追加
+      get :ranking
     end
     resources :reviews, only: [:create, :destroy]
   end

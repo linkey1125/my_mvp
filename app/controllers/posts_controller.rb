@@ -25,6 +25,7 @@ end
 
   def show
     @post = Post.includes(reviews: :user).find(params[:id])
+    @post.increment!(:view_count)
   end
 
   def edit
@@ -70,6 +71,11 @@ def search
   end
 
   render :index
+end
+
+def ranking
+  @posts_by_views = Post.order_by_views.limit(10)
+  @posts_by_reviews = Post.order_by_review_count.limit(10)
 end
 
   private

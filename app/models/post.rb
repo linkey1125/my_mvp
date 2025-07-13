@@ -5,6 +5,15 @@ class Post < ApplicationRecord
   has_many :favorited_users, through: :favorites, source: :user
   has_many :reviews, dependent: :destroy
 
+  scope :order_by_views, -> { order(view_count: :desc) }
+
+  # レビュー数で人気順（left joinで0件も含む）
+  scope :order_by_review_count, -> {
+    left_joins(:reviews)
+      .group(:id)
+      .order('COUNT(reviews.id) DESC')
+  }
+
   validates :title, presence: true
   validates :content, presence: true
   validates :category, presence: true

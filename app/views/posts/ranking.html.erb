@@ -1,0 +1,45 @@
+<div class="container mx-auto px-4 flex flex-col items-center">
+  <h1 class="text-6xl font-extrabold mb-12">Ranking</h1>
+
+  <div class="flex space-x-16 w-full max-w-6xl">
+    <!-- 左側：閲覧数ランキング -->
+    <section class="w-7/12">
+      <h2 class="text-2xl font-semibold mb-6">閲覧数ランキング</h2>
+      <ul>
+        <% @posts_by_views.each do |post| %>
+          <li class="flex items-center mb-6 space-x-6">
+            <% if post.image.attached? %>
+              <%= link_to post_path(post) do %>
+                <%= image_tag url_for(post.image), class: "rounded-md flex-shrink-0 w-24 h-24 object-cover" %>
+              <% end %>
+            <% end %>
+            <div class="min-w-0">
+              <%= link_to post.title, post_path(post), class: "text-blue-600 hover:underline text-lg font-medium truncate block" %>
+              <span class="text-sm text-gray-600">閲覧数: <%= post.view_count %></span>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </section>
+
+    <!-- 右側：レビュー数ランキング -->
+    <section class="w-5/12">
+      <h2 class="text-2xl font-semibold mb-6">レビュー数ランキング</h2>
+      <ul>
+        <% @posts_by_reviews.each do |post| %>
+          <li class="flex items-center mb-6 space-x-6">
+            <% if post.image.attached? %>
+              <%= link_to post_path(post) do %>
+                <%= image_tag url_for(post.image), class: "rounded-md flex-shrink-0 w-24 h-24 object-cover" %>
+              <% end %>
+            <% end %>
+            <div class="min-w-0">
+              <%= link_to post.title, post_path(post), class: "text-blue-600 hover:underline text-lg font-medium truncate block" %>
+              <span class="text-sm text-gray-600">レビュー数: <%= post.reviews.size %></span>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </section>
+  </div>
+</div>
