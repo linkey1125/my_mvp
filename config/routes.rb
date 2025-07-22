@@ -21,8 +21,6 @@ Rails.application.routes.draw do
   delete "logout", to: "sessions#destroy", as: "logout"
   get '/auth/:provider/callback', to: 'sessions#create_from_google'
 
-
-
   resources :passwords, only: [ :new, :create, :edit, :update ]
   get "password/reset", to: "passwords#new", as: "password_reset"
   post "password/reset", to: "passwords#create"
@@ -31,11 +29,9 @@ Rails.application.routes.draw do
 
   resources :favorites, only: [ :create, :destroy, :index ]
 
-
   get "mypage", to: "users#show"
   get "/terms", to: "static_pages#terms"
   get "/privacy", to: "static_pages#privacy"
   get "how_to_use", to: "static_pages#how_to_use"
-
 
 end
