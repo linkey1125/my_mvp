@@ -37,7 +37,7 @@ Rails.application.configure do
   # Make template changes take effect immediately.
   config.action_mailer.perform_caching = false
   # 例: 外部ホスト名を許可
-# 例: ngrokのホストを許可
+  # 例: ngrokのホストを許可
   config.hosts.clear
 
   # Set localhost to be used by links generated in mailer templates.

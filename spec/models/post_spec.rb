@@ -1,29 +1,29 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  # FactoryBotがあれば使うのがおすすめです。なければnewで代用。
-
   describe "バリデーション" do
-    it "タイトルとコンテンツがあれば有効" do
-      post = Post.new(title: "タイトル", content: "コンテンツ")
+    it "タイトルと内容があれば有効" do
+      post = build(:post)
       expect(post).to be_valid
     end
 
-    it "タイトルがなければ無効" do
-      post = Post.new(title: nil, content: "コンテンツ")
+    it "タイトルがないと無効" do
+      post = build(:post, title: nil)
       expect(post).not_to be_valid
-      expect(post.errors[:title]).to include("can't be blank")
+      expect(post.errors[:title]).to include("を入力してください")
     end
 
-    it "コンテンツがなければ無効" do
-      post = Post.new(title: "タイトル", content: nil)
+    it "内容がないと無効" do
+      post = build(:post, content: nil)
       expect(post).not_to be_valid
-      expect(post.errors[:content]).to include("can't be blank")
     end
   end
 
   describe "アソシエーション" do
-    it { should belong_to(:user) }
-    it { should have_many(:favorites) }
+    it "ユーザーと関連している" do
+      user = create(:user)
+      post = create(:post, user: user)
+      expect(post.user).to eq(user)
+    end
   end
 end

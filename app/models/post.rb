@@ -11,7 +11,7 @@ class Post < ApplicationRecord
   scope :order_by_review_count, -> {
     left_joins(:reviews)
       .group(:id)
-      .order('COUNT(reviews.id) DESC')
+      .order("COUNT(reviews.id) DESC")
   }
 
   validates :title, presence: true

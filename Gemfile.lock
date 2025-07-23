@@ -426,6 +426,8 @@ GEM
     uri (1.0.3)
     useragent (0.16.11)
     version_gem (1.1.8)
+    warden (1.2.9)
+      rack (>= 2.0.9)
     web-console (4.2.1)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -484,6 +486,7 @@ DEPENDENCIES
   thruster
   turbo-rails
   tzinfo-data
+  warden
   web-console
 
 BUNDLED WITH
