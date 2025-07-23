@@ -1,0 +1,13 @@
+ja:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "を入力してください"
+              taken: "はすでに存在します"
+        post:
+          attributes:
+            title:
+              blank: "を入力してください"

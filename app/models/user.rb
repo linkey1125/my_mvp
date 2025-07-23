@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   authenticates_with_sorcery! do |config|
-    config.external_providers = [:google]
+    config.external_providers = [ :google ]
   end
 
   attr_accessor :password_confirmation

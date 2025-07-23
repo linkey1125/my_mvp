@@ -1,6 +1,6 @@
 require_relative "boot"
 require "rails/all"
-require 'dotenv/load'
+require "dotenv/load"
 
 Bundler.require(*Rails.groups)
 
@@ -24,5 +24,7 @@ module Myapp
     config.autoload_lib(ignore: %w[assets tasks])
     config.eager_load_paths << Rails.root.join("test/mailers/previews")
     config.eager_load_paths << Rails.root.join("app/mailers")
+    config.i18n.default_locale = :ja
+
   end
 end

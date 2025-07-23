@@ -1,4 +1,6 @@
 require 'spec_helper'
+require 'factory_bot_rails'
+
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 abort("The Rails environment is running in production mode!") if Rails.env.production?
@@ -11,15 +13,15 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 
 RSpec.configure do |config|
-  config.fixture_paths = [
-    Rails.root.join('spec/fixtures')
-  ]
 
-  # FactoryBot の省略記法を有効にする
+config.include Warden::Test::Helpers
+config.before(:suite) { Warden.test_mode! }
+config.after(:each) { Warden.test_reset! }
+
   config.include FactoryBot::Syntax::Methods
-
   config.use_transactional_fixtures = true
   config.filter_rails_from_backtrace!
+  config.infer_spec_type_from_file_location!
 end
 
 # shoulda-matchers の設定
