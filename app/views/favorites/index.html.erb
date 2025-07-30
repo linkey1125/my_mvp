@@ -14,7 +14,7 @@
         <p>UVカット率: <%= post.uv_cut_rate %></p>
 
         <% if post.image.attached? %>
-          <%= image_tag post.image, class: "w-32 h-32 object-cover mt-2" %>
+          <%= image_tag post.image.service_url(public: true), class: "w-32 h-32 object-cover mt-2" %>
         <% end %>
 
         <% if session[:user_id] %>

@@ -34,7 +34,7 @@
           <%= link_to post.title, post_path(post), class: "text-blue-500 hover:underline" %>
         </h3>
         <% if post.image.attached? %>
-          <%= image_tag post.image, class: "w-32 h-32 object-cover mt-2" %>
+          <%= image_tag post.image.service_url(public: true), class: "w-32 h-32 object-cover mt-2" %>
         <% end %>
         <p class="text-gray-600 mt-2"><%= truncate(post.content, length: 100) %></p>
         <p>カテゴリ: <%= post.category %></p>
@@ -62,7 +62,7 @@
         <p>UVカット率: <%= post.uv_cut_rate %></p>
 
         <% if post.image.attached? %>
-          <%= image_tag post.image, class: "w-32 h-32 object-cover mt-2" %>
+          <%= image_tag post.image.service_url(public: true), class: "w-32 h-32 object-cover mt-2" %>
         <% end %>
 
         <% if current_user %>

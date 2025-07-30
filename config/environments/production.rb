@@ -17,6 +17,8 @@ Rails.application.configure do
   config.cache_store = :solid_cache_store
   config.active_job.queue_adapter = :solid_queue
   config.solid_queue.connects_to = { database: { writing: :queue } }
+  config.active_storage.service = :amazon
+
 
   # メール設定（本番環境専用）
   config.action_mailer.raise_delivery_errors = true

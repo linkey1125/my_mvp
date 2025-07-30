@@ -10,7 +10,7 @@
           <li class="flex items-center mb-6 space-x-4">
             <% if post.image.attached? %>
               <%= link_to post_path(post) do %>
-                <%= image_tag url_for(post.image), class: "rounded-md flex-shrink-0 w-24 h-24 object-cover" %>
+                <%= image_tag post.image.service_url(public: true), class: "rounded-md flex-shrink-0 w-24 h-24 object-cover" %>
               <% end %>
             <% end %>
             <div class="min-w-0">
@@ -30,7 +30,7 @@
           <li class="flex items-center mb-6 space-x-4">
             <% if post.image.attached? %>
               <%= link_to post_path(post) do %>
-                <%= image_tag url_for(post.image), class: "rounded-md flex-shrink-0 w-24 h-24 object-cover" %>
+                <%= image_tag post.image.service_url(public: true), class: "rounded-md flex-shrink-0 w-24 h-24 object-cover" %>
               <% end %>
             <% end %>
             <div class="min-w-0">
