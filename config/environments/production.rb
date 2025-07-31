@@ -18,6 +18,7 @@ Rails.application.configure do
   config.active_job.queue_adapter = :solid_queue
   config.solid_queue.connects_to = { database: { writing: :queue } }
   config.active_storage.service = :amazon
+  config.force_ssl = true
 
 
   # メール設定（本番環境専用）

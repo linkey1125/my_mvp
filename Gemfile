@@ -22,6 +22,7 @@ gem "dotenv-rails", groups: [ :development, :test ]
 gem "bootsnap", require: false
 gem "kamal", require: false
 gem "thruster", require: false
+gem 'aws-sdk-s3', require: false
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
