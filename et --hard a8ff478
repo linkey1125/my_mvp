@@ -1,0 +1,71 @@
+[33medd8593[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mtest[m[33m, [m[1;31morigin/test[m[33m, [m[1;31morigin/Rspec[m[33m, [m[1;32mRspec[m[33m)[m Add S3 integration for ActiveStorage
+[33m788bff2[m 画像URL期限切れ対策
+[33ma8ff478[m Rspec実装
+[33mcb4aba0[m[33m ([m[1;31morigin/SNS_login[m[33m, [m[1;32mSNS_login[m[33m)[m Update render.yaml for Render deployment
+[33md09418f[m Add Render deployment config
+[33mfc7cc75[m GOOGLEログインと使い方説明の追加(不要ファイル削除)
+[33m1e121e3[m GOOGLEログインと使い方説明の追加
+[33m507d58e[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m Merge pull request #56 from linkey1125/responsive
+[33mcb69751[m[33m ([m[1;31morigin/responsive[m[33m, [m[1;32mresponsive[m[33m)[m 利用規約・プライバシーポリシーを追加
+[33m9ffbe50[m Merge pull request #55 from linkey1125/responsive
+[33m62cb20b[m レコメンド機能(検索履歴からのおすすめ商品表示)実装
+[33me509b5e[m Merge pull request #54 from linkey1125/responsive
+[33m6541e05[m マルチ検索andオートコンプリート追加
+[33mab7278c[m Merge pull request #53 from linkey1125/responsive
+[33mc77e4bc[m レスポンシブ対応
+[33m41d8477[m Merge pull request #52 from linkey1125/ranking
+[33m8934c71[m[33m ([m[1;31morigin/ranking[m[33m, [m[1;32mranking[m[33m)[m ランキング機能実装
+[33m5b0abe5[m Merge pull request #51 from linkey1125/review
+[33m05f5039[m[33m ([m[1;31morigin/review[m[33m, [m[1;32mreview[m[33m)[m レビュー機能実装
+[33m4840bd3[m Merge pull request #50 from linkey1125/OGP
+[33m44ef5f9[m[33m ([m[1;31morigin/OGP[m[33m, [m[1;32mOGP[m[33m)[m OGP実装
+[33m8df71a7[m オートログイン機能実装
+[33m5bd9b11[m Rubocopを使ってのリファクタリング追加
+[33mdbdd2be[m UVカット率検索
+[33m3ef8f01[m Fix: remove solid_queue in production
+[33m48d1b39[m Fix: use async adapter instead of solid_queue
+[33m61b9347[m session[:user_id]は使わない
+[33m7d7a982[m Post index 文字数変更
+[33m39ba9a3[m Fix SolidQueue setup
+[33mfef51cc[m ボタンの色調整
+[33m653ef2e[m マイグレーションファイル整理
+[33mc443802[m お気に入り機能実装
+[33m76f8836[m 投稿機能修正
+[33m6c1e938[m ポスト投稿機能実装
+[33m5da5acf[m ポスト投稿機能実装
+[33m7a0c1d3[m ログアウト機能実装
+[33mbd0e024[m[33m ([m[1;32mlogout_01[m[33m)[m エラー修正
+[33m48407b5[m エラー修正
+[33m2ccb8ee[m エラー修正
+[33m8313fe0[m エラー修正
+[33m57fdef4[m エラー修正
+[33maaa5e1d[m エラー修正
+[33m156c6fc[m エラー修正
+[33m10dd1d1[m cableなし
+[33mc8efe2f[m zeitwerkエラー
+[33mab9969d[m mailer修正
+[33m5417e55[m masterkey変更
+[33m3a4b08e[m[33m ([m[1;31morigin/top_page[m[33m, [m[1;32mtop_page[m[33m)[m fly.ioの設定削除
+[33mfe0e54f[m config.ru修正
+[33m2feac0f[m Fix DATABASE_URL and production settings
+[33m070eb0f[m Fix DATABASE_URL and production settings
+[33mf38d0f1[m masterKey生成
+[33m44bcede[m Add master.key for Render deployment
+[33ma9c6f83[m Resolved merge conflict in README.md
+[33m6721202[m Save .ruby-version change
+[33m8868aec[m Fix Render directory issue
+[33m2bd2d9f[m Fix stringio installation issue
+[33m2b49df2[m Fix Gemfile for Render
+[33m26901d5[m 初回コミット
+[33mbe1a12e[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m Initial commit
+[33me4d9f20[m Merge pull request #6 from linkey1125/drawER
+[33m7bd3f13[m[33m ([m[1;31morigin/drawER[m[33m)[m ER図
+[33m242bd49[m Merge pull request #5 from linkey1125/Figma
+[33m0391aa2[m Merge pull request #3 from linkey1125/readme_review_request_2
+[33m7147c5e[m[33m ([m[1;31morigin/Figma[m[33m)[m 画面遷移図
+[33mfbc5f10[m[33m ([m[1;31morigin/readme_review_request_2[m[33m)[m README大幅修正
+[33ma676f6e[m Why You？と差別化、売りのポイントの修正
+[33m6fa57f4[m README差分追記
+[33m77815ec[m reset README.md
+[33m23f3fef[m Update README.md
+[33m60d2d9a[m Initial commit
