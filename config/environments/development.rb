@@ -14,6 +14,8 @@ Rails.application.configure do
 
   # Enable server timing.
   config.server_timing = true
+  config.active_storage.service = :amazon
+
 
   # Enable/disable Action Controller caching. By default Action Controller caching is disabled.
   # Run rails dev:cache to toggle Action Controller caching.
@@ -37,7 +39,7 @@ Rails.application.configure do
   # Make template changes take effect immediately.
   config.action_mailer.perform_caching = false
   # 例: 外部ホスト名を許可
-# 例: ngrokのホストを許可
+  # 例: ngrokのホストを許可
   config.hosts.clear
 
   # Set localhost to be used by links generated in mailer templates.

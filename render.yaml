@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: my-mvp
+    env: ruby
+    buildCommand: "./bin/rails assets:precompile"
+    startCommand: "bundle exec rails db:migrate && ./bin/rails server"

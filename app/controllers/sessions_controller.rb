@@ -12,6 +12,14 @@ class SessionsController < ApplicationController
     end
   end
 
+  # 👇 Googleログイン用コールバック
+  def create_from_google
+    auth = request.env["omniauth.auth"]
+    user = User.from_omniauth(auth) # モデル側で定義したGoogle情報からユーザー取得・作成
+    session[:user_id] = user.id
+    redirect_to user_path(user), notice: "Googleでログインしました！"
+  end
+
   def destroy
     logout
     redirect_to root_path, notice: "ログアウトしました"

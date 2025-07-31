@@ -30,6 +30,9 @@ services:
       - "3000:3000"
     environment:
       DATABASE_URL: ${DATABASE_URL} # Render の環境変数を利用
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
+      GOOGLE_CALLBACK_URL: ${GOOGLE_CALLBACK_URL}
     depends_on:
       db:
         condition: service_healthy

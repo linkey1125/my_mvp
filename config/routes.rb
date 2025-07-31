@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       get :autocomplete
       get :ranking
     end
-    resources :reviews, only: [:create, :destroy]
+    resources :reviews, only: [ :create, :destroy ]
   end
 
   resources :users, only: [ :new, :create, :show, :edit, :update ]
@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get "login", to: "sessions#new", as: "login"
   post "login", to: "sessions#create"
   delete "logout", to: "sessions#destroy", as: "logout"
+  get "/auth/:provider/callback", to: "sessions#create_from_google"
 
   resources :passwords, only: [ :new, :create, :edit, :update ]
   get "password/reset", to: "passwords#new", as: "password_reset"
@@ -28,8 +29,8 @@ Rails.application.routes.draw do
 
   resources :favorites, only: [ :create, :destroy, :index ]
 
-
   get "mypage", to: "users#show"
   get "/terms", to: "static_pages#terms"
   get "/privacy", to: "static_pages#privacy"
+  get "how_to_use", to: "static_pages#how_to_use"
 end
