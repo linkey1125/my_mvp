@@ -20,21 +20,21 @@ Rails.application.configure do
   config.active_storage.service = :amazon
   config.force_ssl = true
 
+# メール設定（SendGrid用）
+config.action_mailer.raise_delivery_errors = true
+config.action_mailer.perform_caching = false
+config.action_mailer.default_url_options = { host: "your-app.onrender.com", protocol: "https" }
+config.action_mailer.delivery_method = :smtp
+config.action_mailer.smtp_settings = {
+  address: "smtp.sendgrid.net",
+  port: 587,
+  domain: "your-app.onrender.com",
+  user_name: "apikey", # ← 固定
+  password: ENV["SENDGRID_API_KEY"], # ← Renderの環境変数に設定したAPIキー
+  authentication: "plain",
+  enable_starttls_auto: true
+}
 
-  # メール設定（本番環境専用）
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = { host: "your-app.onrender.com", protocol: "https" }
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
-    port: 587,
-    domain: "your-app.onrender.com",
-    user_name: ENV["SMTP_USER"],
-    password: ENV["SMTP_PASSWORD"],
-    authentication: "plain",
-    enable_starttls_auto: true
-  }
 
   config.i18n.fallbacks = true
   config.active_record.dump_schema_after_migration = false
