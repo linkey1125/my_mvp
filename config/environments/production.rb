@@ -28,7 +28,7 @@ config.action_mailer.delivery_method = :smtp
 config.action_mailer.smtp_settings = {
   address: "smtp.sendgrid.net",
   port: 587,
-  domain: "uvtechtechto.com"
+  domain: "uvtechtechto.com",
   user_name: "apikey", # ← 固定
   password: ENV["SENDGRID_API_KEY"], # ← Renderの環境変数に設定したAPIキー
   authentication: "plain",
