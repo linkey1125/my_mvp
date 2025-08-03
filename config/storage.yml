@@ -12,5 +12,3 @@ amazon:
   secret_access_key: <%= ENV["AWS_SECRET_ACCESS_KEY"] %>
   region: "us-east-1"  # S3バケットのリージョンに合わせて変更
   bucket: "uvtechtechto-assets"  # 実際のバケット名
-  upload:
-    acl: "public-read"
